@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import axios from 'axios'
-import PropertyCard from '../propertyCard/PropertyCard'
-import '../properties/Properties.css'
+import PropertyCard from './PropertyCard'
 
 const API_URL='http://localhost:5001/api/'
 
@@ -20,9 +19,8 @@ const Properties = () => {
     <div className="properties-list">
     {allProperties?.length > 0 ?
           <>
-          {allProperties.map((property) => {
-                console.log(property);
-                return <PropertyCard property={property} />;
+          {allProperties.map((prop) => {
+                return <PropertyCard key={prop._id} prop={prop} />;
           })}    
           </> : <h2>We have no properties with the specified options.</h2>}
     </div>

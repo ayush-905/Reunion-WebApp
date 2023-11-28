@@ -1,8 +1,7 @@
 import React from 'react'
-import './PropertyCard.css'
 
-const PropertyCard = ({ property }) => {
-    const {area,title,price,city,state,country,beds,bathrooms}={...property}
+const PropertyCard = ({ prop }) => {
+    const {area,title,price,city,state,country,beds,bathrooms}={...prop}
     return (
       <div className='card'>
         <h4>₹ {price}/month</h4>
