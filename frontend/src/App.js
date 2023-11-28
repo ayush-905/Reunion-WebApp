@@ -5,6 +5,7 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Properties from './components/properties/Properties';
 
 
 function App() {
@@ -13,7 +14,12 @@ function App() {
     <Router>
       <div className="App">
       <Routes>
-        <Route path='/' element={<Navbar/>} />
+        <Route path='/' element={
+        <>
+        <Navbar/>
+        <Properties/>
+        </>
+        } />
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
       </Routes>

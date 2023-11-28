@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL='https://reunion-backend-w11b.onrender.com/api/'
+const API_URL='http://localhost:5001/api/'
 
 // Register user
 const register = async (userData) => {
