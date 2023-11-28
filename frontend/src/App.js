@@ -3,9 +3,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/navbar/Navbar'
 import Login from './components/login/Login';
 import Register from './components/register/Register';
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 
 function App() {
   return (
+    <>
     <Router>
       <div className="App">
       <Routes>
@@ -15,6 +19,8 @@ function App() {
       </Routes>
     </div>
     </Router>
+    <ToastContainer />
+    </>
     
   );
 }
