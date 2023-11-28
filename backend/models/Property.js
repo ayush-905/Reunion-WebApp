@@ -32,7 +32,7 @@ const PropertySchema = new mongoose.Schema({
         min: 1
     },
     bathrooms: {
-        type: String,
+        type: Number,
         required: true,
         min: 1
     },

@@ -125,7 +125,6 @@ h4{
   cursor: pointer;
   text-align: center;
   appearance: button;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
