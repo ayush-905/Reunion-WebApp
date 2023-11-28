@@ -5,7 +5,7 @@ const { protect } = require('../middleware/authMiddleware')
 const {registerUser, loginUser } = require('../controllers/userController')
 
 
-router.post('/api/signup', registerUser)
+router.post('/api/register', registerUser)
 router.post('/api/login', loginUser)
 
 router.get('/api/list-properties',getAll)
