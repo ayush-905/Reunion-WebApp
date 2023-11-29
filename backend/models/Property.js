@@ -40,6 +40,9 @@ const PropertySchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    imageUrl: {
+        type: String,
+    }
 }, {timestamps: true})
 
 module.exports = mongoose.model("Property", PropertySchema)
