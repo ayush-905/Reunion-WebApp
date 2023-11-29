@@ -1,12 +1,12 @@
-import './App.css';
+import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './components/Login'
+import Register from './components/Register'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import Properties from './components/Properties';
-import Dashboard from './components/Dashboard';
+import Properties from './components/Properties'
+import Dashboard from './components/Dashboard'
 
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
     <ToastContainer />
     </>
     
-  );
+  )
 }
 
-export default App;
+export default App

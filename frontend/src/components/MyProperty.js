@@ -1,9 +1,7 @@
 import React from 'react'
-import { useModal } from './Properties'
 
-const PropertyCard = ({ prop }) => {
+const MyProperty = ({ prop }) => {
     const {area,title,price,city,state,country,beds,bathrooms}={...prop}
-    const { openModal } = useModal()
    
     return (
       <div className='card'>
@@ -15,9 +13,9 @@ const PropertyCard = ({ prop }) => {
           <h4>{bathrooms} Bathrooms</h4>
           <h4>{area} sq.m</h4>
         </span>
-        <button className='button' onClick={openModal}>Contact Owner</button>
       </div>
+      
     )
   }
 
-  export default PropertyCard
+  export default MyProperty

@@ -1,11 +1,25 @@
-import React, {useState, useEffect} from 'react'
+import React, { createContext, useContext, useState, useEffect} from 'react'
 import axios from 'axios'
 import PropertyCard from './PropertyCard'
+import ContactModal from './Modal'
 
 const API_URL='http://localhost:5001/api/'
 
+export const ModalContext = createContext()
+
+export const useModal = () => useContext(ModalContext)
+
 const Properties = () => {
   const [allProperties, setAllProperties] = useState([])
+  const [isModalOpen, setModalOpen] = useState(false)
+
+  const openModal = () => {
+    setModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setModalOpen(false)
+  }
 
   useEffect(() => {
     const fetchAllProperties = async() => {
@@ -15,15 +29,20 @@ const Properties = () => {
     fetchAllProperties()
   }, [])
 
+
+
   return (
-    <div className="properties-list">
-    {allProperties?.length > 0 ?
-          <>
-          {allProperties.map((prop) => {
-                return <PropertyCard key={prop._id} prop={prop} />;
-          })}    
-          </> : <h2>We have no properties with the specified options.</h2>}
-    </div>
+    <ModalContext.Provider value={{ isModalOpen, openModal, closeModal }}>
+      <div className="properties-list">
+      {allProperties?.length > 0 ?
+            <>
+            {allProperties.map((prop) => {
+                  return <PropertyCard key={prop._id} prop={prop} />
+            })}    
+            </> : <h2>We have no properties with the specified options.</h2>}
+      </div>
+      <ContactModal />
+    </ModalContext.Provider>
   )
 }
 

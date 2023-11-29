@@ -13,28 +13,28 @@ function AddProperty() {
         beds: '',
         bathrooms: '',
         area: '',
-      });
+      })
 
     const { user } = useSelector((state) => state.auth)
 
     const dispatch = useDispatch()
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setForm((prevData) => ({
       ...prevData,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
   const onSubmit = async(e) => {
     e.preventDefault()
     
      setForm((prevData) => {
-        const updatedForm = { ...prevData, currentOwner: user._id };
-        dispatch(createProperty(updatedForm));
-        return updatedForm;
-      });
+        const updatedForm = { ...prevData, currentOwner: user._id }
+        dispatch(createProperty(updatedForm))
+        return updatedForm
+      })
   }
 
   return (

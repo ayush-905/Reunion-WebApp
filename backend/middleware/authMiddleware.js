@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler')
 const User = require('../models/User')
 
 const protect = asyncHandler(async (req, res, next) => {
-  let token;
+  let token
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith('Bearer')
@@ -17,13 +17,13 @@ const protect = asyncHandler(async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
       // Get user from the token
-      const user = await User.findById(decoded.id).select('-password');
+      const user = await User.findById(decoded.id).select('-password')
       if (!user) {
-        res.status(401);
-        throw new Error('User not found');
+        res.status(401)
+        throw new Error('User not found')
       }
-      req.user = user;
-      next();
+      req.user = user
+      next()
     } catch (error) {
       console.log(error)
       res.status(401)

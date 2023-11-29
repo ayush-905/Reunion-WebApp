@@ -5,9 +5,9 @@ const Property = require('../models/Property')
 // Helper function to check ownership
 const checkOwnership = (property, userId) => {
     if (property.currentOwner.toString() !== userId) {
-      throw new Error("You are not allowed to perform this action on other people's properties");
+      throw new Error("You are not allowed to perform this action on other people's properties")
     }
-  };
+  }
 
 // get all properties
 const getAll=asyncHandler(async(req,res)=>{

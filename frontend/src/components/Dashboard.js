@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getProperty, reset } from '../features/properties/propertySlice'
-import PropertyCard from './PropertyCard'
+import MyProperty from './MyProperty'
 import AddProperty from './AddProperty'
 
 function Dashboard() {
@@ -53,7 +53,7 @@ function Dashboard() {
         {property.length > 0 ? (
           <div className='properties-list'>
             {property.map((prop) => (
-              <PropertyCard key={prop._id} prop={prop} />
+              <MyProperty key={prop._id} prop={prop} />
             ))}
           </div>
         ) : (
