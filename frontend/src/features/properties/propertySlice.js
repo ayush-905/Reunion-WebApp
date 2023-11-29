@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import propertyService from './propertyService'
+import { toast } from 'react-toastify'
 
 const initialState = {
   property: [],
@@ -13,14 +14,13 @@ const initialState = {
 export const createProperty = createAsyncThunk('property/create', async (PropertyData, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token
-      return await propertyService.createProperty(PropertyData, token)
+      const prop = await propertyService.createProperty(PropertyData, token)
+      toast.success("Property added successfully")
+      return prop
     } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString()
+      const message = ((error.response &&error.response.data && error.response.data.message) 
+      || error.message || error.toString())
+      toast.error("Property can not be added")
       return thunkAPI.rejectWithValue(message)
     }
   }

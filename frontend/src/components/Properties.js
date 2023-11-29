@@ -39,7 +39,7 @@ const Properties = () => {
             {allProperties.map((prop) => {
                   return <PropertyCard key={prop._id} prop={prop} />
             })}    
-            </> : <h2>We have no properties with the specified options.</h2>}
+            </> : <h2>Wait a minute.. Server is starting.</h2>}
       </div>
       <ContactModal />
     </ModalContext.Provider>

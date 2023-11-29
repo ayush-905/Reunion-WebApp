@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import {useModal} from './Properties'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const API_URL = 'http://localhost:5001/api/'
 
@@ -25,10 +26,11 @@ const ContactModal = () => {
   const handleSend = () => {
     axios.post(API_URL + 'send-email', formData)
       .then((response) => {
-        console.log(response.data)
+        toast.success(response.data.message)
         closeModal()
       })
       .catch((error) => {
+        toast.error(error)
         console.error(error)
       })
   }

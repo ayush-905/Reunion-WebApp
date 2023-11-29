@@ -30,11 +30,9 @@ function AddProperty() {
   const onSubmit = async(e) => {
     e.preventDefault()
     
-     setForm((prevData) => {
-        const updatedForm = { ...prevData, currentOwner: user._id }
-        dispatch(createProperty(updatedForm))
-        return updatedForm
-      })
+    const updatedForm = { ...form, currentOwner: user._id };
+    dispatch(createProperty(updatedForm));
+    setForm(updatedForm);
   }
 
   return (

@@ -23,13 +23,15 @@ function Dashboard() {
     if (!user) {
       navigate('/')
     }
-
-    dispatch(getProperty())
+    
+    if (user) {
+      dispatch(getProperty());
+    }
 
     return () => {
       dispatch(reset())
     }
-  }, [user, navigate, isError, message, dispatch])
+  }, [user, isError, message, dispatch])
 
   if (isLoading) {
     return <h1>Loading</h1>
@@ -57,7 +59,7 @@ function Dashboard() {
             ))}
           </div>
         ) : (
-          <h3>You does not have any property</h3>
+          <h3>You do not have any property listed as of now.</h3>
         )}
       </section>
     </>
