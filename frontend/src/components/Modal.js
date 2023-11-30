@@ -6,8 +6,8 @@ import Button from '@mui/material/Button'
 import {useModal} from './Properties'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { API_URL } from '../utils/helper'
 
-const API_URL = 'http://localhost:5001/api/'
 
 const ContactModal = () => {
   const { isModalOpen, closeModal } = useModal()

@@ -2,8 +2,7 @@ import React, { createContext, useContext, useState, useEffect} from 'react'
 import axios from 'axios'
 import PropertyCard from './PropertyCard'
 import ContactModal from './Modal'
-
-const API_URL='http://localhost:5001/api/'
+import { API_URL } from '../utils/helper'
 
 export const ModalContext = createContext()
 
