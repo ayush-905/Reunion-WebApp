@@ -61,8 +61,8 @@ const deleteProp = asyncHandler(async(req,res)=>{
   try {
     const property = await Property.findById(req.params.id)
     checkOwnership(property,req.user.id)
-    await property.delete()
-    return res.status(200).json({ msg: "Successfully deleted property" })
+    await property.deleteOne()
+    return res.status(200).json({ id:req.params.id })
 } catch (error) {
     return res.status(500).json(error)
 }

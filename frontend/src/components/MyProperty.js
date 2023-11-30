@@ -1,8 +1,10 @@
 import React from 'react'
+import { deleteProperty } from '../features/properties/propertySlice'
+import { useDispatch } from 'react-redux'
+const MyProperty = ({ property }) => {
+    const {area,title,price,city,state,country,beds,bathrooms,imageUrl} = property
+    const dispatch = useDispatch()
 
-const MyProperty = ({ prop }) => {
-    const {area,title,price,city,state,country,beds,bathrooms,imageUrl}={...prop}
-   
     return (
       <div className='card'>
         <img src={imageUrl} alt='Property '/>
@@ -14,6 +16,9 @@ const MyProperty = ({ prop }) => {
           <h4>{bathrooms} Bathrooms</h4>
           <h4>{area} sq.m</h4>
         </span>
+        <button onClick={() => dispatch(deleteProperty(property._id))} className='button'>
+        Delete Property
+      </button>
       </div>
       
     )

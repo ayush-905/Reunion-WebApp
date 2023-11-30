@@ -35,7 +35,7 @@ const deleteProperty = async (propertyId, token) => {
     },
   }
 
-  const response = await axios.delete(API_URL + 'property' + propertyId, config)
+  const response = await axios.delete(API_URL + 'property/' + propertyId, config)
 
   return response.data
 }

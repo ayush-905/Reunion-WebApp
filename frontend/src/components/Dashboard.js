@@ -55,7 +55,7 @@ function Dashboard() {
         {property.length > 0 ? (
           <div className='properties-list'>
             {property.map((prop) => (
-              <MyProperty key={prop._id} prop={prop} />
+              <MyProperty key={prop._id} property={prop} />
             ))}
           </div>
         ) : (

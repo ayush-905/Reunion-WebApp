@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBhxhxh3yf6vinBYBdBaOFywQHLhd-jixM",
+    apiKey: process.env.FIREBASE_API_KEY,
     authDomain: "reunion-396eb.firebaseapp.com",
     projectId: "reunion-396eb",
     storageBucket: "reunion-396eb.appspot.com",

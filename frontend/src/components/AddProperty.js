@@ -3,7 +3,8 @@
   import { createProperty } from './../features/properties/propertySlice'
   import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
   import { app } from './../firebase'
-
+  import { toast } from 'react-toastify'
+  
   function AddProperty() {
     const [form, setForm] = useState({
       currentOwner: '',
@@ -35,6 +36,12 @@
       if (files && files.length>0) {
         const storage = getStorage(app)
         const file = files[0]
+        const maxSizeInBytes = 2 * 1024 * 1024;
+        if (file.size > maxSizeInBytes) {
+          toast.error('File size exceeds the limit (2 MB)');
+          setLoading(false);
+          return null;
+        }
         const fileName = new Date().getTime() + file.name
         const storageRef = ref(storage, fileName)
         try {
@@ -54,6 +61,8 @@
       if (files && files.length>0) {
         try{
           const imageUrl = await handleUpload()
+          if(!imageUrl)
+            return
           const updatedForm = { ...form, currentOwner: user._id, imageUrl:imageUrl }
           dispatch(createProperty(updatedForm))
           setForm(updatedForm)
