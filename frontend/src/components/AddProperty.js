@@ -5,9 +5,12 @@
   import { app } from './../firebase'
   import { toast } from 'react-toastify'
   
-  function AddProperty() {
+  function AddProperty(props) {
+    const { user } = useSelector((state) => state.auth)
+    const dispatch = useDispatch()
+
     const [form, setForm] = useState({
-      currentOwner: '',
+      currentOwner: user.id,
       title: '',
       price: '',
       city: '',
@@ -20,8 +23,6 @@
     })
     const [files,setFiles]= useState('')
     const [loading,setLoading]= useState(false)
-    const { user } = useSelector((state) => state.auth)
-    const dispatch = useDispatch()
 
     const handleChange = (e) => {
       const { name, value } = e.target
@@ -57,15 +58,21 @@
 
     const onSubmit = async (e) => {
       e.preventDefault()
-
+      const isEmpty = Object.entries(form).some(([key, value]) => key !== 'imageUrl' && value === '');
+      if(isEmpty){
+            toast.error("Fill all details")
+            setLoading(false)
+            return
+      }
       if (files && files.length>0) {
         try{
           const imageUrl = await handleUpload()
           if(!imageUrl)
             return
-          const updatedForm = { ...form, currentOwner: user._id, imageUrl:imageUrl }
+          const updatedForm = { ...form, imageUrl:imageUrl }
           dispatch(createProperty(updatedForm))
           setForm(updatedForm)
+          props.onChange()
         }catch(error){
           console.log(error)
         }

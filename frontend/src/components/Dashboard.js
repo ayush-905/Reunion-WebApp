@@ -36,7 +36,11 @@ function Dashboard() {
   if (isLoading) {
     return <h1>Loading</h1>
   }
- 
+
+  function handleChange(){
+    setAddProperty(false)
+  }
+  
   return (
     <>
       <section className='heading'>
@@ -45,7 +49,7 @@ function Dashboard() {
       </section>
       <section className='content'>
       {addProperty?
-        (<AddProperty/>)
+        (<AddProperty onChange={handleChange}/>)
         :
         (<button className='btn' onClick={()=>{setAddProperty(true)}}>
           Add Property
