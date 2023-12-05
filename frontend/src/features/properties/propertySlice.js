@@ -43,6 +43,25 @@ export const getProperty = createAsyncThunk('property/getAll', async (_, thunkAP
   }
 )
 
+// Update user property
+export const updateProperty = createAsyncThunk('property/update', async({ PropertyData, id }, thunkAPI) => {
+  try{
+    const token = thunkAPI.getState().auth.user.token
+    const prop = await propertyService.updateProperty(PropertyData, id, token)
+    toast.success("Property updated successfully")
+    return prop
+  } catch (error) {
+    const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+  }
+  
+})
+
 // Delete user property
 export const deleteProperty = createAsyncThunk('property/delete', async (id, thunkAPI) => {
     try {
@@ -90,6 +109,22 @@ export const propertySlice = createSlice({
         state.property = action.payload
       })
       .addCase(getProperty.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(updateProperty.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(updateProperty.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        const index = state.property.findIndex(property => property._id === action.payload._id);
+        if (index !== -1) {
+          state.property[index] = action.payload;
+        }
+      })
+      .addCase(updateProperty.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

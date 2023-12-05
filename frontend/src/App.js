@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Properties from './components/Properties'
 import Dashboard from './components/Dashboard'
+import UpdateProperty from './components/UpdateProperty'
 
 
 const App = () => {
@@ -28,7 +29,8 @@ const App = () => {
         <Navbar/>
         <Dashboard/>
         </>
-      } />
+        } />
+        <Route path='/edit' element={<UpdateProperty/>}/>
       </Routes>
     </div>
     </Router>

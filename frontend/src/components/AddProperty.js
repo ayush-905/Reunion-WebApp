@@ -53,7 +53,6 @@
           console.error("Error uploading image:", error)
         }
       }
-      console.log(form)
     };
 
     const onSubmit = async (e) => {
@@ -76,6 +75,9 @@
         }catch(error){
           console.log(error)
         }
+      }
+      else{
+        toast.error("Upload an image")
       }
     }
 

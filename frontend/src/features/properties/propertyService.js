@@ -27,6 +27,19 @@ const getProperty = async (token) => {
   return response.data
 }
 
+// Update user property
+const updateProperty= async(propertyData, propertyId, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  }
+
+  const response = await axios.put(API_URL + 'property/' + propertyId, propertyData, config)
+  
+  return response.data
+}
+
 // Delete user property
 const deleteProperty = async (propertyId, token) => {
   const config = {
@@ -43,6 +56,7 @@ const deleteProperty = async (propertyId, token) => {
 const propertyService = {
   createProperty,
   getProperty,
+  updateProperty,
   deleteProperty,
 }
 

@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { deleteProperty } from '../features/properties/propertySlice'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 const MyProperty = ({ property }) => {
+
     const {area,title,price,city,state,country,beds,bathrooms,imageUrl} = property
     const dispatch = useDispatch()
+    const navigte = useNavigate()
+
+    const handleClick = () =>{
+        navigte('/edit',{state:property})
+    }
 
     return (
       <div className='card'>
@@ -18,6 +26,9 @@ const MyProperty = ({ property }) => {
         </span>
         <button onClick={() => dispatch(deleteProperty(property._id))} className='button'>
         Delete Property
+      </button>
+      <button className='button' onClick={handleClick}>
+        Edit Property
       </button>
       </div>
       
