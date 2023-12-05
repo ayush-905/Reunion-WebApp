@@ -9,7 +9,7 @@ import Properties from './components/Properties'
 import Dashboard from './components/Dashboard'
 
 
-function App() {
+const App = () => {
   return (
     <>
     <Router>

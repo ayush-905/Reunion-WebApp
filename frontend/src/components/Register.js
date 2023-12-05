@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { FaUser } from 'react-icons/fa'
 import { register, reset } from './../features/auth/authSlice'
 
-function Register() {
+const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

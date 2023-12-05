@@ -58,7 +58,8 @@ const ContactModal = () => {
             fullWidth margin="normal" 
             onChange={handleInputChange} 
         />
-        <TextField name="phone" 
+        <TextField 
+            name="phone" 
             label="Phone No" 
             placeholder="Enter your phone number" 
             fullWidth margin="normal" 

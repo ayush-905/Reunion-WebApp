@@ -5,7 +5,7 @@ import { getProperty, reset } from '../features/properties/propertySlice'
 import MyProperty from './MyProperty'
 import AddProperty from './AddProperty'
 
-function Dashboard() {
+const Dashboard = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -37,7 +37,7 @@ function Dashboard() {
     return <h1>Loading</h1>
   }
 
-  function handleChange(){
+  const handleChange = () =>{
     setAddProperty(false)
   }
   

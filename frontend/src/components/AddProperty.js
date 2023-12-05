@@ -5,7 +5,7 @@
   import { app } from './../firebase'
   import { toast } from 'react-toastify'
   
-  function AddProperty(props) {
+  const AddProperty = (props) => {
     const { user } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
 
