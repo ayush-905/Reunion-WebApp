@@ -29,7 +29,7 @@ const Login = () => {
     if (isSuccess || user) {
       navigate('/dashboard')
     }
-
+    
     dispatch(reset())
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
@@ -43,11 +43,13 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault()
 
-    const userData = {
-      email,
-      password,
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Invalid email address');
+      return;
     }
 
+    const userData = {email, password}
     dispatch(login(userData))
   }
 

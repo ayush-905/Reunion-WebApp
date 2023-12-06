@@ -35,24 +35,26 @@ const Register = () => {
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
   const onChange = (e) => {
+    const {name, value} = e.target
     setFormData((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }))
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Invalid email address');
+      return;
+    }
+
     if (password !== password2) {
       toast.error('Passwords do not match')
     } else {
-      const userData = {
-        name,
-        email,
-        password,
-      }
-
+      const userData = {name, email, password}
       dispatch(register(userData))
     }
   }
