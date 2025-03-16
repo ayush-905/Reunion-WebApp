@@ -31,7 +31,7 @@ const Dashboard = () => {
     return () => {
       dispatch(reset())
     }
-  }, [user, isError, message, dispatch])
+  }, [user, isError, message, dispatch, navigate])
 
   if (isLoading) {
     return <h1>Loading</h1>

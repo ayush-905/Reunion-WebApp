@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { updateProperty } from './../features/properties/propertySlice'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { app } from './../firebase'
@@ -22,7 +22,7 @@ const UpdateProperty = () => {
   const [files,setFiles]= useState('')
   const [loading,setLoading]= useState(false)
 
-  const { user } = useSelector((state) => state.auth)
+ 
   const dispatch = useDispatch()
   const location = useLocation();
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const UpdateProperty = () => {
     if (data) {
       setForm((prevForm) => ({ ...prevForm, ...data }));
     }
-  }, []);
+  }, [location.state]);
 
   const handleChange = (e) => {
     const { name, value } = e.target

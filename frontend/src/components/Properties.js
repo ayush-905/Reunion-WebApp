@@ -11,7 +11,6 @@ export const useModal = () => useContext(ModalContext)
 const Properties = () => {
   const [allProperties, setAllProperties] = useState([])
   const [isModalOpen, setModalOpen] = useState(false)
-  const [loading, setLoading] = useState(false)
 
   const openModal = () => {
     setModalOpen(true)
@@ -24,14 +23,11 @@ const Properties = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        setLoading(true)
         const response = await axiosInstance.get('list-properties')
         setAllProperties(response.data)
       } catch (error) {
         console.error('Error fetching properties:', error)
         toast.error('Failed to fetch properties')
-      } finally {
-        setLoading(false)
       }
     }
 
