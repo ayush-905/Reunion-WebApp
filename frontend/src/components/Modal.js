@@ -25,10 +25,7 @@ const ContactModal = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await axiosInstance.post('send-email', {
-        propertyId: property._id,
-        message,
-      })
+      await axiosInstance.post('send-email', formData)
       toast.success('Email sent successfully!')
       closeModal()
     } catch (error) {
