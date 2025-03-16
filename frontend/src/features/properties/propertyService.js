@@ -1,55 +1,26 @@
-import axios from 'axios'
-import { API_URL } from '../../utils/helper'
+import axiosInstance from '../../utils/axiosConfig'
 
 // Create new property
-const createProperty = async (propertyData, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-
-  const response = await axios.post(API_URL + 'property', propertyData, config)
-
+const createProperty = async (propertyData) => {
+  const response = await axiosInstance.post('property', propertyData)
   return response.data
 }
 
 // Get user property
-const getProperty = async (token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-
-  const response = await axios.get(API_URL + 'property/me', config)
-
+const getProperty = async () => {
+  const response = await axiosInstance.get('property/me')
   return response.data
 }
 
 // Update user property
-const updateProperty= async(propertyData, propertyId, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  }
-
-  const response = await axios.put(API_URL + 'property/' + propertyId, propertyData, config)
-  
+const updateProperty = async (propertyData, propertyId) => {
+  const response = await axiosInstance.put(`property/${propertyId}`, propertyData)
   return response.data
 }
 
 // Delete user property
-const deleteProperty = async (propertyId, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
-
-  const response = await axios.delete(API_URL + 'property/' + propertyId, config)
-
+const deleteProperty = async (propertyId) => {
+  const response = await axiosInstance.delete(`property/${propertyId}`)
   return response.data
 }
 

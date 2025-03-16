@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, useEffect} from 'react'
-import axios from 'axios'
+import axiosInstance from '../utils/axiosConfig'
 import PropertyCard from './PropertyCard'
 import ContactModal from './Modal'
-import { API_URL } from '../utils/helper'
+import { toast } from 'react-toastify'
 
 export const ModalContext = createContext()
 
@@ -11,6 +11,7 @@ export const useModal = () => useContext(ModalContext)
 const Properties = () => {
   const [allProperties, setAllProperties] = useState([])
   const [isModalOpen, setModalOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const openModal = () => {
     setModalOpen(true)
@@ -21,13 +22,21 @@ const Properties = () => {
   }
 
   useEffect(() => {
-    const fetchAllProperties = async() => {
-      const response = await axios.get(API_URL + 'list-properties')
-      setAllProperties(response.data)
+    const fetchProperties = async () => {
+      try {
+        setLoading(true)
+        const response = await axiosInstance.get('list-properties')
+        setAllProperties(response.data)
+      } catch (error) {
+        console.error('Error fetching properties:', error)
+        toast.error('Failed to fetch properties')
+      } finally {
+        setLoading(false)
+      }
     }
-    fetchAllProperties()
-  }, [])
 
+    fetchProperties()
+  }, [])
 
 
   return (

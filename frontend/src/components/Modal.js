@@ -4,9 +4,8 @@ import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import {useModal} from './Properties'
-import axios from 'axios'
+import axiosInstance from '../utils/axiosConfig'
 import { toast } from 'react-toastify'
-import { API_URL } from '../utils/helper'
 
 
 const ContactModal = () => {
@@ -23,16 +22,19 @@ const ContactModal = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }))
   }
 
-  const handleSend = () => {
-    axios.post(API_URL + 'send-email', formData)
-      .then((response) => {
-        toast.success(response.data.message)
-        closeModal()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      await axiosInstance.post('send-email', {
+        propertyId: property._id,
+        message,
       })
-      .catch((error) => {
-        toast.error(error)
-        console.error(error)
-      })
+      toast.success('Email sent successfully!')
+      closeModal()
+    } catch (error) {
+      toast.error('Failed to send email')
+      console.error('Error:', error)
+    }
   }
 
   return (
@@ -73,7 +75,7 @@ const ContactModal = () => {
             margin="normal" 
             onChange={handleInputChange} 
         />
-        <Button variant="contained" onClick={handleSend}>Send</Button>
+        <Button variant="contained" onClick={handleSubmit}>Send</Button>
         <Button onClick={closeModal}>Close</Button>
       </Box>
     </Modal>
