@@ -1,21 +1,28 @@
-const path = require('path');
 const express = require('express');
-const dotenv = require('dotenv').config();
+const cors = require('cors');
 const connectDB = require('./config/db');
-const port = process.env.PORT || 5000;
-const cors=require('cors')
+const routes = require('./routes/Routes');
 const { errorHandler } = require('./middleware/errorMiddleware');
-
-connectDB();
+require('dotenv').config();
 
 const app = express();
 
-app.use(cors())
+// Connect to database
+connectDB();
+
+// Middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/',require('./routes/Routes'))
+// Routes
+app.use('/api', routes);
 
+// Error handler
 app.use(errorHandler);
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+const port = process.env.PORT || 5001;
+
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});

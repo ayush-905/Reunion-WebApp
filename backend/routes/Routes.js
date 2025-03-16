@@ -4,16 +4,25 @@ const { getAll, setProp, getAllMe, updateProp, deleteProp } = require('../contro
 const { protect } = require('../middleware/authMiddleware')
 const {registerUser, loginUser } = require('../controllers/userController')
 const { sendEmail } = require('../controllers/emailContoller')
+const userRoutes = require('./userRoutes')
 
-router.post('/api/register', registerUser)
-router.post('/api/login', loginUser)
+router.post('/register', registerUser)
+router.post('/login', loginUser)
 
-router.get('/api/list-properties',getAll)
-router.post('/api/property',protect, setProp)
-router.get('/api/property/me',protect, getAllMe)
-router.put('/api/property/:id',protect, updateProp)
-router.delete('/api/property/:id',protect, deleteProp)
+router.get('/list-properties',getAll)
+router.post('/property',protect, setProp)
+router.get('/property/me',protect, getAllMe)
+router.put('/property/:id',protect, updateProp)
+router.delete('/property/:id',protect, deleteProp)
 
 router.post('/api/send-email', sendEmail)
+
+// Mount routes
+router.use('/users', userRoutes)
+
+// Test route
+router.get('/test', (req, res) => {
+  res.json({ message: 'API is working' })
+})
 
 module.exports = router
